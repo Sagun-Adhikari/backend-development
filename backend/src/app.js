@@ -15,6 +15,7 @@ app.post('/notes',(req,res)=>{
 
     
 })
+
 app.get('/notes',(req,res)=>{
     res.status(200).json({
         message:"notes fetch successfully",
@@ -34,6 +35,14 @@ app.delete('/notes/:index',(req,res)=>{
     })
 })
 
+//update notes
+const index=req.params.index
+const description=req.body.description
+
+notes[ index ].description=description
+res.status(200).json({
+    message:"note updated sucessfully"
+})
 
 
 
