@@ -1,5 +1,6 @@
 //to create server
 const express=require('express')
+const {dlopen}=require("process")
 const app=express()
 
 app.use(express.json())
@@ -36,13 +37,18 @@ app.delete('/notes/:index',(req,res)=>{
 })
 
 //update notes
-const index=req.params.index
-const description=req.body.description
+app.patch('/notes/:index', (req, res) => {
+    const index = req.params.index;
+    const description = req.body.description;
 
-notes[ index ].description=description
-res.status(200).json({
-    message:"note updated sucessfully"
-})
+  
+    notes[index].description = description;
+
+    res.status(200).json({
+        message: "Note updated successfully",
+        note: notes[index]
+    });
+});
 
 
 
